@@ -22,7 +22,13 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
-## Contributing
+```ruby
+EnomRuby::Client.configure do |c|
+  c.username = ENV['ENOM_USERNAME']
+  c.password = ENV['ENOM_PASSWORD']
+  c.test_mode = true
+end
+```
 
 1. Fork it ( https://github.com/[my-github-username]/enom-ruby/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
