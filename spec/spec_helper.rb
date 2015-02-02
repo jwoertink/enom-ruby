@@ -3,6 +3,9 @@ require 'vcr'
 require 'dotenv'
 Dotenv.load
 
+$: << File.expand_path('../lib', __FILE__)
+require 'enom-ruby'
+
 real_requests = ENV['REAL_REQUESTS']
 
 VCR.configure do |config|
@@ -14,9 +17,15 @@ VCR.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.extend VCR::RSpec::Macros
+  config.filter_run_including focus: true
 
   config.before(:each) {
     VCR.eject_cassette
   } if real_requests
+end
+
+EnomRuby::Client.configure do |config|
+  config.username = ENV['ENOM_USERNAME']
+  config.password = ENV['ENOM_PASSWORD']
+  config.test_mode = true
 end
