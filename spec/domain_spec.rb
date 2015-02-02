@@ -7,8 +7,9 @@ RSpec.describe EnomRuby::Domain do
     context 'with a valid SLD "google" and no extra TLDs' do
       it 'returns an array with a single domain object showing unavailable' do
         domain = EnomRuby::Domain.check('google').first
-        expect(domain).to be_a(Domain)
+        expect(domain).to be_a(EnomRuby::Domain)
         expect(domain).to be_unavailable
+        expect(domain.url).to eq 'google.com'
       end
     end
   end

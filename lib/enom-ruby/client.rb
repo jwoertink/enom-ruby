@@ -31,13 +31,10 @@ module EnomRuby
       # or other helpful statuses -- everything comes back as a 200.
       def request(params = {})
         response = get(base_uri, query: params.merge(default_params))
-        case response.code
-        when 200
-          if response["interface_response"]["ErrCount"] == "0"
-            return response
-          else
-            raise InterfaceError, response["interface_response"]["errors"].values.join(", ")
-          end
+        if Integer(response["interface_response"]["ErrCount"]).zero?
+          return response["interface_response"]
+        else
+          raise InterfaceError, response["interface_response"]["errors"].values.join(", ")
         end
       end
     end
