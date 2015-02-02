@@ -14,7 +14,7 @@ RSpec.describe EnomRuby::Domain do
     end
   end
 
-  describe '.tld_list', vcr: true, focus: true do
+  describe '.tld_list', vcr: true do
     subject { EnomRuby::Domain.tld_list }
 
     it 'returns an array including normal tld "com" and fancy tld "ninja"' do
