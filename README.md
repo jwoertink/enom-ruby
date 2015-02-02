@@ -20,8 +20,6 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
-
 ```ruby
 EnomRuby::Client.configure do |c|
   c.username = ENV['ENOM_USERNAME']
@@ -29,6 +27,14 @@ EnomRuby::Client.configure do |c|
   c.test_mode = true
 end
 ```
+
+## Development
+
+* Add a .env file `touch .env`
+* Then add your `ENOM_USERNAME` and `ENOM_PASSWORD` environment variables.
+* `rspec spec/` to run your tests.
+
+Note that this needs to make an API call, so it will generate VCR cassettes.
 
 ## Contribute
 

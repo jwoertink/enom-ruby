@@ -1,11 +1,22 @@
 require 'rspec'
 require 'vcr'
+require 'dotenv'
+Dotenv.load
+
+real_requests = ENV['REAL_REQUESTS']
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/cassettes"
-  config.hook_into :webmock # or :fakeweb
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.allow_http_connections_when_no_cassette = true if real_requests
+  config.default_cassette_options = {record: :new_episodes}
 end
 
-RSpec.configure do |c|
-  c.extend VCR::RSpec::Macros
+RSpec.configure do |config|
+  config.extend VCR::RSpec::Macros
+
+  config.before(:each) {
+    VCR.eject_cassette
+  } if real_requests
 end

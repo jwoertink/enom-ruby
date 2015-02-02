@@ -1,4 +1,5 @@
 .DS_Store
+/.env
 /.bundle/
 /.yardoc
 /Gemfile.lock
@@ -7,6 +8,7 @@
 /doc/
 /pkg/
 /spec/reports/
+/spec/cassettes/*.yml
 /tmp/
 *.bundle
 *.so
