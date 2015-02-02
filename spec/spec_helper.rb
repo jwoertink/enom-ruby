@@ -1,5 +1,6 @@
 require 'rspec'
 require 'vcr'
+require 'pry'
 require 'dotenv'
 Dotenv.load
 
