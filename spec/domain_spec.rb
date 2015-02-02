@@ -14,4 +14,18 @@ RSpec.describe EnomRuby::Domain do
     end
   end
 
+  describe '.tld_list', vcr: true, focus: true do
+    subject { EnomRuby::Domain.tld_list }
+
+    it 'returns an array including normal tld "com" and fancy tld "ninja"' do
+      expect(subject).to include 'com'
+      expect(subject).to include 'ninja'
+    end
+
+    it 'returns an array excluding foreign tlds like xn--mgbh0fb or 5earlyaccess' do
+      test_results = subject.collect {|d| d.include?('--') || d.match(/\d+/)}.compact
+      expect(test_results).to be_empty
+    end
+  end
+
 end

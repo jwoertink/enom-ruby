@@ -34,7 +34,7 @@ module EnomRuby
         if Integer(response["interface_response"]["ErrCount"]).zero?
           return response["interface_response"]
         else
-          raise InterfaceError, response["interface_response"]["errors"].values.join(", ")
+          raise response["interface_response"]["errors"].values.join(", ")
         end
       end
     end
