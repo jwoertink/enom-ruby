@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 RSpec.describe EnomRuby::Domain do
 
-  describe '.check', vcr: true, focus: true do
+  describe '.check', vcr: true do
 
     context 'with a valid SLD "google" and no extra TLDs' do
       it 'returns an array with a single domain object showing unavailable' do
