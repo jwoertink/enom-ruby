@@ -18,7 +18,7 @@ end
 
 RSpec.configure do |config|
   config.filter_run_including focus: true
-
+  config.color = true
   config.before(:each) {
     VCR.eject_cassette
   } if real_requests
