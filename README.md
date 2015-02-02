@@ -21,11 +21,21 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
+require 'enom-ruby'
+
 EnomRuby::Client.configure do |c|
   c.username = ENV['ENOM_USERNAME']
   c.password = ENV['ENOM_PASSWORD']
   c.test_mode = true
 end
+
+# searches for google.com
+domains = EnomRuby::Domain.check('google')
+
+# searches for google.co, google.org, google.net
+domains = EnomRuby::Domain.check('google', ['co', 'org', 'net'])
+
+domains.first.unavailable? #=> true
 ```
 
 ## Development
