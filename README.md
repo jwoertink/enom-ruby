@@ -36,6 +36,9 @@ domains = EnomRuby::Domain.check('google')
 domains = EnomRuby::Domain.check('google', ['co', 'org', 'net'])
 
 domains.first.unavailable? #=> true
+
+# adds google.co and google.org to your cart
+EnomRuby::Domain.bulk_register('google', ['co', 'org'])
 ```
 
 ## Development
