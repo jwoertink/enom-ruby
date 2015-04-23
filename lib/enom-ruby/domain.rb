@@ -31,6 +31,7 @@ module EnomRuby
         end
         query[:command] = 'AddBulkDomains'
         query[:producttype] = 'register'
+        query[:listcount] = group.size
         responses << Client.request(query)
       end
       responses
