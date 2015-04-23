@@ -21,6 +21,21 @@ module EnomRuby
       tld_list.compact.reject {|d| d.include?('--') || d.match(/\d+/) }
     end
 
+    def self.bulk_register(sld, tld_list = DEFAULT_TLDS)
+      responses = []
+      tld_list.each_slice(4) do |group|
+        query = {}
+        group.each_with_index do |tld, idx|
+          query["tld#{idx+1}"] = tld
+          query["sld#{idx+1}"] = sld
+        end
+        query[:command] = 'AddBulkDomains'
+        query[:producttype] = 'register'
+        responses << Client.request(query)
+      end
+      responses
+    end
+
     def initialize(domain, availability_text)
       @domain = domain
       @availability_text = availability_text
