@@ -11,6 +11,7 @@ module EnomRuby
 
       def configure
         yield self
+        self
       end
 
       # All requests must contain the UID, PW, and ResponseType query parameters
